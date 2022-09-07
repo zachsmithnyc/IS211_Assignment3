@@ -7,18 +7,18 @@ import re
 
 #config for log file: Needs file name 
 #LOG_FILENAME = ''
-#logging.basicConfig(filename=LOG_FILENAME, level=logging.debug)
+#logging.basicConfig(filename=LOG_FILENAME, level=logging.DEBUG)
 
 def download_data(url):
     '''pulls down web log file and stores it as csv'''
     file = requests.get(url)
-    reader = csv.reader(file)
-    for row in reader:
-        print(row)
+    return file.text
+   
 
 def main(url):
     print(f"Running main with URL = {url}...")
-
+    content = download_data(url)
+    return content
 
 if __name__ == "__main__":
     """Main entry point"""
