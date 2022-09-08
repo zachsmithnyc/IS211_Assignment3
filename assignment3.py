@@ -35,16 +35,24 @@ def csv_process(file):
         browser = row[2]
         status = row[3]
         request_size = row[4]
-        print(row)
+        #print(row)
 
-        if re.search("gif|jpe?g|png", path_to_file.lower()):
+        if re.search("gif|jpe?g|png$", path_to_file.lower()):
             image_hits += 1
         #check browser and update dict
-        elif re.search("", browser):
-            pass
+        elif re.search(r"\bMSIE\b", browser):
+            browser_dict['IE'] += 1
+        elif re.search(r"\bFirefox\b", browser):
+            browser_dict['Firefox'] += 1
+        elif re.search(r'\bSafari\b', browser) and re.search(r'\bChrome\b', browser):
+            browser_dict['Chrome'] += 1
+        else:
+            browser_dict["Safari"] += 1
     
     avg_hits = image_hits/(i + 1) * 100
     print(f'Image requests account for {avg_hits}% of all requests.')
+    popular = max(browser_dict, key=browser_dict.get)
+    print(f'The most popular browser is {popular}.')
    
 
 def main(url):
