@@ -29,7 +29,7 @@ def csv_process(file):
         path_to_file = row[0]
         datetime_accessed = row[1] # parse this using dateime.datetime.strptim()
         try:
-            datetime_accessed = datetime.datetime.strptime(row[1], '%Y/%m/%d %I:%M:%S')
+            datetime_accessed = datetime.datetime.strptime(row[1], '%Y/%m/%d %H:%M:%S')
         except ValueError:
             pass
         browser = row[2]
