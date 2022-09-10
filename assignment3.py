@@ -27,11 +27,11 @@ def csv_process(file):
     csv_reader = csv.reader(io.StringIO(file))
     for i, row in enumerate(csv_reader):
         path_to_file = row[0]
-        datetime_accessed = row[1] # parse this using dateime.datetime.strptim()
+        datetime_accessed = datetime.datetime.strptime(row[1], '%Y-%m-%d %H:%M:%S') 
         browser = row[2]
         status = row[3]
         request_size = row[4]
-        #print(row)
+        print(row)
 
         if re.search(r"\.gif|\.jpe?g|\.png", path_to_file.lower()): 
             image_hits += 1
