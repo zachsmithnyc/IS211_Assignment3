@@ -33,7 +33,7 @@ def csv_process(file):
         request_size = row[4]
         #print(row)
 
-        if re.search(r"gif|jpe?g|png", path_to_file.lower()): #searches for image file extensions at the end of a string
+        if re.search(r"\.gif|\.jpe?g|\.png", path_to_file.lower()): 
             image_hits += 1
         #check browser and update dict
         if re.search(r"\bMSIE\b", browser.upper()):
