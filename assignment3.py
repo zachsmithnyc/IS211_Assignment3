@@ -5,6 +5,7 @@ import re
 import io
 import datetime
 # other imports go here
+# url = http://s3.amazonaws.com/cuny-is211-spring2015/weblog.csv
 
 def download_data(url):
     '''pulls down web log file as a string'''
@@ -21,6 +22,7 @@ def csv_process(file):
         'Chrome': 0,
         'Firefox': 0
     }
+    
     #dict to store hourly hits
     hour_dict = {}
    
@@ -31,7 +33,8 @@ def csv_process(file):
         browser = row[2]
         status = row[3]
         request_size = row[4]
-        print(row)
+        #print(row)
+        
 
         if re.search(r"\.gif|\.jpe?g|\.png", path_to_file.lower()): 
             image_hits += 1
@@ -45,10 +48,11 @@ def csv_process(file):
         else:
             browser_dict["Safari"] += 1
 
+    #print(browser_dict)
     avg_hits = image_hits/(i + 1) * 100
     print(f'Image requests account for {avg_hits}% of all requests.')
     popular = max(browser_dict, key=browser_dict.get)
-    print(f'The most popular browser is {popular} with {browser_dict["Chrome"]} hits.')
+    print(f'The most popular browser is {popular} with {browser_dict[popular]} hits.')
     
    
 
